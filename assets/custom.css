@@ -223,3 +223,7 @@ sticky-header.header-wrapper.bg-color .header__icon, sticky-header.header-wrappe
     align-items: center;
     padding: 0 1rem;
 }
+
+.header {
+  color: red;
+}

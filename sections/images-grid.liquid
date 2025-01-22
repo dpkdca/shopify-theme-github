@@ -1,0 +1,75 @@
+<div class="grid-images" style="--columns: {{ section.settings.columns | default: 3 }}">
+{% for block in section.blocks %}
+  <a href="{{ block.settings.link }}" class="grid-image-item">
+    <img src="{{ block.settings.img | img_url: "master" }}">
+    <h2>{{ block.settings.title }}</h2>
+  </a>
+{% endfor %}
+  
+</div>
+
+<style>
+  .grid-images {
+    display: grid;
+    grid-template-columns: repeat(var(--columns, 3), 1fr);
+    gap: {{ section.settings.gap }}px; /* Adjust gap between grid items */
+        padding: 0 16px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "grid Images",
+  "settings": [
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of Columns",
+      "default": 3,
+      "min": 2,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "default": 16,
+      "min": 1,
+      "max": 50,
+      "step": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "image",
+      "limit": 30,
+      "settings": [
+           {
+             "type": "image_picker",
+             "id": "img",
+             "label": "Add image"
+           },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Title",
+          "label": "Add Title"
+        },
+        {
+          "type": "url",
+          "id": "Link",
+          "label": "Add Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "grid Images",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
